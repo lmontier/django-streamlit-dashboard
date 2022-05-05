@@ -1,20 +1,17 @@
-from .common import AbstractBaseModel
-from django.db import models
 from django.contrib import admin
+from django.db import models
+
+from .common import AbstractBaseModel
 
 
 class ImageAnnotation(AbstractBaseModel):
-    image_hash = models.CharField(max_length=60, unique=True)
-    name = models.CharField(max_length=60, unique=True)
-
-    @property
-    def tray_objects_count(self) -> int:
-        return self.trayobject_set.count()
+    image_id = models.CharField(max_length=60, unique=True)
+    label = models.CharField(max_length=60)
 
     def __str__(self):
-        return self.name
+        return str(self.image_hash) + "_" + str(self.label)
 
 
 @admin.register(ImageAnnotation)
-class ContainerLabelAdmin(admin.ModelAdmin):
-    list_display = ("name", "description", "tray_objects_count", "created_at", "updated_at")
+class ImageAnnotationAdmin(admin.ModelAdmin):
+    list_display = ("image_id", "label", "created_at", "updated_at")
