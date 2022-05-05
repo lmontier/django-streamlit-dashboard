@@ -29,4 +29,8 @@ class QualityTagValues(models.TextChoices):
 
 
 def get_quality_tag_field() -> models.CharField:
-    return models.CharField(max_length=24, choices=QualityTagValues.choices, default=QualityTagValues.TO_BE_CHECKED)
+    return models.CharField(
+        max_length=24,
+        choices=QualityTagValues.choices,
+        default=QualityTagValues.TO_BE_CHECKED,
+    )
