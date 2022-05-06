@@ -17,7 +17,6 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         annotations = self.load_annotations()
 
-        print(annotations.to_dict(orient="records"))
         self.upsert_model_instances(
             model_class=models.ImageAnnotation,
             instances=annotations.to_dict(orient="records"),
