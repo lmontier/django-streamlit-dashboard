@@ -29,8 +29,8 @@ make start_database_monitoring
 ```
 
 ### Start the django server
-To start the streamlit dashboard, simply run:
+To start the Django server, simply run:
 ```
 make start_django_server
 ```
-then go to [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin) to access Django Admin
+then go to [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin) to access Django Admin website.
