@@ -74,7 +74,9 @@ class Command(BaseCommand):
                 tfds.as_dataframe(ko_ds)
                 .assign(
                     image_id=lambda df: df.image.map(lambda x: sha1(x).hexdigest()),
-                    label=lambda df: random.choice(list(label_mapping.values())),
+                    label=lambda df: df.label.map(
+                        lambda _: random.choice(list(label_mapping.values()))
+                    ),
                     height=lambda df: df.image.map(lambda x: x.shape[0]),
                     width=lambda df: df.image.map(lambda x: x.shape[1]),
                     label_correctness="KO",

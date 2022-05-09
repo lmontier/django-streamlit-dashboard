@@ -40,7 +40,7 @@ def show_quality_metrics(
 
         # Plot
         fig, ax = plt.subplots()
-        metrics_df[["OK", "TO_BE_CHECKED", "KO"]].plot.bar(
+        metrics_df.filter(items=["OK", "TO_BE_CHECKED", "KO"]).plot.bar(
             ax=ax, fontsize=15, alpha=0.5, grid=True, color=["green", "orange", "red"]
         )
         plt.legend(loc="upper left")
