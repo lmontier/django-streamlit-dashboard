@@ -10,11 +10,12 @@ make install
 It will create a virtual environment inside a `.venv` folder and install the project dependencies. 
 
 ## Database Initialization
-To install the project, simply run:
+To init the Databse, simply run:
 ```
 make init_database
 ```
 It will:
+- create a sqlite database file in the project root
 - apply the migrations
 - create a superuser (username: `admin`, password: `admin`)
 - load fake data inside the database
