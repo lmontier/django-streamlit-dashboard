@@ -11,7 +11,17 @@ django.setup()
 from annotationsdatabase import models
 
 
-def show_header_metrics():
+def get_annotations_from_db() -> pd.DataFrame:
+    return pd.DataFrame.from_records(
+        list(
+            models.ImageAnnotation.objects.values(
+                "label", "label_correctness", "image_correctness", "image_id"
+            )
+        )
+    )
+
+
+def show_header_metrics() -> None:
     metric_columns = st.columns(5)
     metric_columns[0].metric(
         label="Annotations in DataBase", value=models.ImageAnnotation.objects.count()
@@ -19,9 +29,7 @@ def show_header_metrics():
     st.write("---")
 
 
-def show_quality_metrics(
-    annotations_df: pd.DataFrame, metric_name: str
-) -> pd.DataFrame:
+def show_quality_metrics(annotations_df: pd.DataFrame, metric_name: str) -> None:
     with st.expander(f"{metric_name} metrics", expanded=True):
         metrics_df = annotations_df.pivot_table(
             columns=metric_name, index="label", values="image_id", aggfunc="count"
@@ -59,13 +67,7 @@ def main():
     show_header_metrics()
 
     # Correctness metrics
-    annotations_df = pd.DataFrame.from_records(
-        list(
-            models.ImageAnnotation.objects.values(
-                "label", "label_correctness", "image_correctness", "image_id"
-            )
-        )
-    )
+    annotations_df = get_annotations_from_db()
     show_quality_metrics(annotations_df, "label_correctness")
     show_quality_metrics(annotations_df, "image_correctness")
 
