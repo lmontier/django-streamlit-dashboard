@@ -13,9 +13,16 @@ class ImageAnnotation(AbstractBaseModel):
     image_correctness = get_quality_tag_field()
 
     def __str__(self):
-        return str(self.image_hash) + "_" + str(self.label)
+        return str(self.image_id) + "_" + str(self.label)
 
 
 @admin.register(ImageAnnotation)
 class ImageAnnotationAdmin(admin.ModelAdmin):
-    list_display = ("image_id", "label", "created_at", "updated_at")
+    list_display = (
+        "image_id",
+        "label",
+        "label_correctness",
+        "image_correctness",
+        "created_at",
+        "updated_at",
+    )

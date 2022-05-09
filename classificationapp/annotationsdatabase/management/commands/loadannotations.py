@@ -48,7 +48,6 @@ class Command(BaseCommand):
         (ok_ds, ko_ds, to_review) = tfds.load(
             "tf_flowers", split=["train[:80%]", "train[80%:82%]", "train[82%:]"]
         )
-        mocked_quality = ["OK", "KO", "TO_BE_CHECKED"]
         label_mapping = {
             0: "dandelion",
             1: "daisy",
@@ -65,7 +64,7 @@ class Command(BaseCommand):
                     label=lambda df: df.label.map(label_mapping),
                     height=lambda df: df.image.map(lambda x: x.shape[0]),
                     width=lambda df: df.image.map(lambda x: x.shape[1]),
-                    label_correctness=mocked_quality[index],
+                    label_correctness=["OK", "TO_BE_CHECKED"][index],
                     image_correctness="OK",
                 )
                 .drop(columns=["image"])
