@@ -13,7 +13,7 @@ start_database_monitoring:
 
 init_database:
 	source .venv/bin/activate && cd classificationapp && python manage.py migrate
-	DJANGO_SUPERUSER_PASSWORD="admin" source .venv/bin/activate && cd classificationapp && python manage.py createsuperuser --noinput --username admin --email admin@admin.com
+	source .venv/bin/activate && cd classificationapp && DJANGO_SUPERUSER_PASSWORD=admin python manage.py createsuperuser --noinput --username admin --email admin@admin.com
 	make load_fake_data
 
 load_fake_data:
