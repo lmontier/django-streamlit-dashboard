@@ -9,7 +9,7 @@ start_django_server:
 	source .venv/bin/activate && cd classificationapp && python manage.py runserver
 
 start_database_monitoring:
-	source .venv/bin/activate && cd classificationapp && streamlit run annotationsdatabase/st_annotations_monitoring.py
+	source .venv/bin/activate && streamlit run classificationapp/annotationsdatabase/st_annotations_monitoring.py
 
 init_database:
 	source .venv/bin/activate && cd classificationapp && python manage.py migrate
