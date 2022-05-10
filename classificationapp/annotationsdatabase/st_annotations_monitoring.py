@@ -1,4 +1,4 @@
-from annotationsdatabase.utils import django_setup
+from classificationapp.utils import django_setup
 
 django_setup()
 
