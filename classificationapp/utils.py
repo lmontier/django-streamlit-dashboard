@@ -13,7 +13,7 @@ def django_setup() -> None:
     Allows to setup Django if it's not already running on a server. Should be called before any Django imports.
     """
     # Add the project base directory to the sys.path
-    sys.path.insert(0, DJANGO_ROOT_DIR.as_posix())
+    sys.path.append(DJANGO_ROOT_DIR.as_posix())
 
     # The DJANGO_SETTINGS_MODULE has to be set to allow us to access django imports
     os.environ.setdefault(
