@@ -1,13 +1,11 @@
-import os
+from annotationsdatabase.utils import django_setup
 
-import django
+django_setup()
+
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
-
-# Django Setup
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "classificationapp.settings")
-django.setup()
 from annotationsdatabase import models
 
 
